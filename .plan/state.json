@@ -1,7 +1,6 @@
 {
-  "current_task": "T006",
-  "status": "blocked",
-  "open_question": "Commit bf865c3 está local, mas o push/deploy não ocorreu por falta de autenticação do GitHub. Após `gh auth login`, executar `git push origin main` para acionar os projetos conectados à branch.",
+  "current_task": "T008",
+  "status": "in_progress",
   "tasks": {
     "T001": {
       "deps": "done",
@@ -75,15 +74,43 @@
       "deps": "done",
       "ler": "done",
       "criar_alterar": "done",
-      "fazer": "blocked",
-      "done_when": "blocked",
-      "fora_de_escopo": "pending",
+      "fazer": "done",
+      "done_when": "done",
+      "fora_de_escopo": "done",
       "evidence": [
         "`pnpm --filter @crm/admin test && pnpm --filter @crm/admin lint && pnpm --filter @crm/admin typecheck && pnpm --filter @crm/admin build`: exit 0; test passed, lint/typecheck clean, Next.js production build succeeded.",
         "Diff review found no secrets, external URLs, direct network/storage access, or dangerous HTML injection in the admin interface; all WhatsApp/chat records are labeled illustrative/demo and sending is disabled.",
         "`git diff --check`: exit 0. Gitleaks is unavailable in this environment.",
         "Commit created locally: bf865c3 (`Build modern admin support dashboard`).",
-        "`git push origin main` failed because Git could not obtain credentials; `gh auth status` reports not logged in, and Vercel CLI is unavailable. Remote `main` remains at eabc772, so deployment was not triggered."
+        "Remote `main` is at 0cacc47691e3fa0bb951f7b911d064358ec86cd4, including both interface and evidence-fix commits.",
+        "`curl https://crm-ai-psi-seven.vercel.app/` returned the deployed Prime CRM title, dashboard greeting, and service overview."
+      ]
+    },
+    "T007": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "done",
+      "fazer": "done",
+      "done_when": "done",
+      "fora_de_escopo": "done",
+      "evidence": [
+        "`curl https://crm-ai-64ad.vercel.app/` still returns `<h1>CRM B2B - Portal</h1>`.",
+        "User confirmed the portal scope: customer dashboard with quotes, order tracking, and financial sections using clearly labeled fictitious data.",
+        "`pnpm --filter @crm/portal test && pnpm --filter @crm/portal lint && pnpm --filter @crm/portal typecheck && pnpm --filter @crm/portal build`: exit 0; 3 tests passed, lint and typecheck clean, Next.js production build succeeded.",
+        "Production smoke test via `pnpm --filter @crm/portal exec next start -H 127.0.0.1` and curl verified the portal title, all three sections, demonstration disclosure, and explicit empty state for unconnected orders.",
+        "Review found no secrets, external URLs, network/storage access, or real payment/shipping claims in portal source; no customer-specific data is persisted or fetched."
+      ]
+    },
+    "T008": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "in_progress",
+      "fazer": "in_progress",
+      "done_when": "in_progress",
+      "fora_de_escopo": "pending",
+      "evidence": [
+        "User explicitly authorized commit and push for portal deployment.",
+        "Portal tests, lint, typecheck, build, smoke test, and review passed as recorded in T007."
       ]
     }
   }

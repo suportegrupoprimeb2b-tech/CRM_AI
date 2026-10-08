@@ -69,3 +69,27 @@
   - Se aprovado, criar commit apenas com os arquivos da interface e evidência, enviar para origin/main e verificar o deploy do projeto admin.
 - done_when: checks do app admin aprovados; commit e push confirmados; deployment admin contém a nova interface ou registrar claramente falha externa de deploy.
 - fora_de_escopo: publicar o portal, alterações no painel Vercel, adicionar integrações reais ou incluir arquivos alheios ao admin.
+
+# T007
+
+- deps: [T006]
+- ler: [apps/portal/src/app/page.tsx, apps/portal/src/app/layout.tsx, apps/portal/package.json, supabase/schema.sql]
+- criar/alterar: UI do portal em apps/portal/src/app e testes relacionados; .plan/state.json
+- fazer:
+  - Definir e implementar a primeira interface do portal B2B voltada ao cliente, independente do painel admin.
+  - Confirmar o escopo funcional antes de tratar cotações, pedidos/rastreio e financeiro como telas ou fluxos implementados.
+  - Usar dados demonstrativos explicitamente identificados enquanto não houver autenticação e integração real; não expor dados de outras organizações/clientes.
+- done_when: escopo confirmado; `pnpm --filter @crm/portal test && pnpm --filter @crm/portal lint && pnpm --filter @crm/portal typecheck && pnpm --filter @crm/portal build`.
+- fora_de_escopo: integrações reais, autenticação, persistência e qualquer alteração no painel admin.
+
+# T008
+
+- deps: [T007]
+- ler: [apps/portal/src/app/page.tsx, apps/portal/src/app/globals.css, apps/portal/src/app/layout.tsx, apps/portal/src/app/page.test.tsx, .plan/state.json]
+- criar/alterar: somente interface versionada do portal e evidências de commit/deploy em .plan/state.json
+- fazer:
+  - Confirmar checks e ausência de segredos/dados reais na interface.
+  - Fazer commit e push autorizados à main para acionar o deploy conectado do portal.
+  - Verificar que o portal publicado apresenta a nova interface.
+- done_when: commit e push confirmados e URL do portal retorna conteúdo da interface, ou registrar falha externa de deploy.
+- fora_de_escopo: admin, arquivos gerados ou locais não relacionados, integrações reais.
