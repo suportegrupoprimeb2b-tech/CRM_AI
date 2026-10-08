@@ -1,5 +1,5 @@
 {
-  "current_task": "T004",
+  "current_task": "T006",
   "status": "done",
   "tasks": {
     "T001": {
@@ -48,7 +48,39 @@
       "evidence": [
         "`pnpm install --frozen-lockfile && pnpm build`: exit 0; 7 workspace projects installed; 6/6 builds passed.",
         "Vercel config JSON validation: exit 0; pnpm install and build commands verified.",
-        "The local pnpm-lock.yaml is currently untracked; include it in the commit so Vercel's frozen install can use it."
+        "User configured and deployed separate Vercel projects for `apps/admin` and `apps/portal`; both routes returned the expected app placeholder via curl.",
+        "`curl -sS -L https://crm-ai-psi-seven.vercel.app/` returned `<h1>CRM B2B - Admin</h1>`; that URL is serving the current placeholder page.",
+        "`curl -sS -L https://crm-ai-64ad.vercel.app/` returned `<h1>CRM B2B - Portal</h1>`; both Vercel deployments serve their respective current placeholder pages.",
+        "The initial `public` output directory error is resolved; both projects now publish the correct Next.js app."
+      ]
+    },
+    "T005": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "done",
+      "fazer": "done",
+      "done_when": "done",
+      "fora_de_escopo": "done",
+      "evidence": [
+        "`pnpm --filter @crm/admin test`: exit 0; 1 test passed.",
+        "`pnpm --filter @crm/admin lint`: exit 0.",
+        "`pnpm --filter @crm/admin typecheck`: exit 0.",
+        "`pnpm --filter @crm/admin build`: exit 0; Next.js generated the admin route.",
+        "Production smoke test: `pnpm --filter @crm/admin exec next start -H 127.0.0.1` plus curl returned the page title, dashboard metrics, inbox entry, and demo-data disclosure."
+        "Production smoke test: `pnpm --filter @crm/admin exec next start -H 127.0.0.1` and curl returned page title, dashboard metrics, service-channel card, inbox CTA, and demo-data disclosure."
+      ]
+    },
+    "T006": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "in_progress",
+      "fazer": "in_progress",
+      "done_when": "in_progress",
+      "fora_de_escopo": "pending",
+      "evidence": [
+        "`pnpm --filter @crm/admin test && pnpm --filter @crm/admin lint && pnpm --filter @crm/admin typecheck && pnpm --filter @crm/admin build`: exit 0; test passed, lint/typecheck clean, Next.js production build succeeded.",
+        "Diff review found no secrets, external URLs, direct network/storage access, or dangerous HTML injection in the admin interface; all WhatsApp/chat records are labeled illustrative/demo and sending is disabled.",
+        "`git diff --check`: exit 0. Gitleaks is unavailable in this environment."
       ]
     }
   }
