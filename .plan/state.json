@@ -1,6 +1,7 @@
 {
   "current_task": "T006",
-  "status": "done",
+  "status": "blocked",
+  "open_question": "Commit bf865c3 está local, mas o push/deploy não ocorreu por falta de autenticação do GitHub. Após `gh auth login`, executar `git push origin main` para acionar os projetos conectados à branch.",
   "tasks": {
     "T001": {
       "deps": "done",
@@ -66,21 +67,23 @@
         "`pnpm --filter @crm/admin lint`: exit 0.",
         "`pnpm --filter @crm/admin typecheck`: exit 0.",
         "`pnpm --filter @crm/admin build`: exit 0; Next.js generated the admin route.",
-        "Production smoke test: `pnpm --filter @crm/admin exec next start -H 127.0.0.1` plus curl returned the page title, dashboard metrics, inbox entry, and demo-data disclosure."
+        "Production smoke test: `pnpm --filter @crm/admin exec next start -H 127.0.0.1` plus curl returned the page title, dashboard metrics, inbox entry, and demo-data disclosure.",
         "Production smoke test: `pnpm --filter @crm/admin exec next start -H 127.0.0.1` and curl returned page title, dashboard metrics, service-channel card, inbox CTA, and demo-data disclosure."
       ]
     },
     "T006": {
       "deps": "done",
       "ler": "done",
-      "criar_alterar": "in_progress",
-      "fazer": "in_progress",
-      "done_when": "in_progress",
+      "criar_alterar": "done",
+      "fazer": "blocked",
+      "done_when": "blocked",
       "fora_de_escopo": "pending",
       "evidence": [
         "`pnpm --filter @crm/admin test && pnpm --filter @crm/admin lint && pnpm --filter @crm/admin typecheck && pnpm --filter @crm/admin build`: exit 0; test passed, lint/typecheck clean, Next.js production build succeeded.",
         "Diff review found no secrets, external URLs, direct network/storage access, or dangerous HTML injection in the admin interface; all WhatsApp/chat records are labeled illustrative/demo and sending is disabled.",
-        "`git diff --check`: exit 0. Gitleaks is unavailable in this environment."
+        "`git diff --check`: exit 0. Gitleaks is unavailable in this environment.",
+        "Commit created locally: bf865c3 (`Build modern admin support dashboard`).",
+        "`git push origin main` failed because Git could not obtain credentials; `gh auth status` reports not logged in, and Vercel CLI is unavailable. Remote `main` remains at eabc772, so deployment was not triggered."
       ]
     }
   }
