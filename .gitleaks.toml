@@ -1,0 +1,13 @@
+title = "CRM B2B"
+
+[allowlist]
+  description = "Allow local examples and generated artifacts"
+  paths = [
+    "**/.env.example",
+    "**/*.example",
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/.turbo/**",
+    "**/dist/**",
+    "**/coverage/**",
+  ]

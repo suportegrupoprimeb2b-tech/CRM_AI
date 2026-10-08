@@ -1,0 +1,55 @@
+{
+  "current_task": "T004",
+  "status": "done",
+  "tasks": {
+    "T001": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "done",
+      "fazer": "done",
+      "done_when": "done",
+      "fora_de_escopo": "done",
+      "evidence": [
+        "pnpm install && pnpm build && pnpm typecheck && pnpm lint"
+      ]
+    },
+    "T002": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "done",
+      "fazer": "done",
+      "done_when": "done",
+      "fora_de_escopo": "done",
+      "evidence": [
+        "ruby -e 'require \"yaml\"; YAML.load_file(\".github/workflows/ci.yml\")'",
+        "pnpm typecheck && pnpm lint && pnpm test && pnpm audit --prod",
+        "gitleaks not installed in local environment; action uses gitleaks/gitleaks-action@v2"
+      ]
+    },
+    "T003": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "done",
+      "fazer": "done",
+      "done_when": "done",
+      "fora_de_escopo": "done",
+      "evidence": [
+        "pnpm --filter @crm/core test && pnpm --filter @crm/core lint",
+        "pnpm typecheck && pnpm lint"
+      ]
+    },
+    "T004": {
+      "deps": "done",
+      "ler": "done",
+      "criar_alterar": "done",
+      "fazer": "done",
+      "done_when": "done",
+      "fora_de_escopo": "done",
+      "evidence": [
+        "`pnpm install --frozen-lockfile && pnpm build`: exit 0; 7 workspace projects installed; 6/6 builds passed.",
+        "Vercel config JSON validation: exit 0; pnpm install and build commands verified.",
+        "The local pnpm-lock.yaml is currently untracked; include it in the commit so Vercel's frozen install can use it."
+      ]
+    }
+  }
+}
